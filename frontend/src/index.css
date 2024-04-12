@@ -14,7 +14,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 } */
 .leaflet-container {
 	width: 100%;
-	height: 100%;
+	height: 300px;
+	z-index: 1 !important;
 }
 .leaflet-pane {
 	width: 100%;

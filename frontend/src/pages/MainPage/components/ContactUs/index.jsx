@@ -1,20 +1,17 @@
-import { MapContainer, TileLayer } from "react-leaflet";
-const center = [51.505, -0.09];
-const rectangle = [
-	[51.49, -0.08],
-	[51.5, -0.06],
-];
+import { MapContainer } from "react-leaflet/MapContainer";
+import { TileLayer } from "react-leaflet/TileLayer";
+const center = [48.321345, 25.9339175];
+
 function ContactUs() {
 	return (
 		<div className='w-full h-[300px] flex'>
 			<div className='w-6/12 h-full flex'>
-				{/* <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+				<MapContainer center={center} zoom={10} scrollWheelZoom={false}>
 					<TileLayer
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 					/>
 				</MapContainer>
-				, */}
 			</div>
 			<div className='w-6/12 h-full relative'>
 				<img

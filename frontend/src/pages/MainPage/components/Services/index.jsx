@@ -1,5 +1,20 @@
-import Input from "../../../components/Input";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { apiClient } from "../../../../apiClient";
+import { consultationsValidationSchema } from "../../../../validations/consultations.schema";
+
 function Services() {
+	const initialValues = {
+		phone: "",
+		fullName: "",
+		isHandled: false,
+	};
+	const createConsultations = async (values) => {
+		try {
+			await apiClient.post("consultations", values);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div className='w-full flex h-[400px]'>
 			<div className='w-6/12 relative'>
@@ -39,13 +54,47 @@ function Services() {
 				<p className='mt-5 text-center text-2xl font-medium text-[#F08080]'>
 					Хочете кваліфіковану консультацію?
 				</p>
-				<div className='m-auto flex flex-col w-5/12 gap-3'>
-					<Input placeholder='Введіть ПІБ' />
-					<Input placeholder='Введіть номер телефону' />
-					<button className='bg-[#F08080] !border-none duration-200 !outline-none rounded-md h-10 px-4 text-lg cursor-pointer text-white hover:bg-[#c96363]'>
-						Надіслати
-					</button>
-				</div>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={consultationsValidationSchema}
+					onSubmit={createConsultations}>
+					{({ values }) => (
+						<Form className='m-auto flex flex-col w-5/12 gap-3'>
+							<div className='flex flex-col'>
+								<Field
+									id='fullName'
+									name='fullName'
+									placeholder='Введіть ПІБ'
+									className={`bg-white text-red-700 h-10 border-[#F08080] border-[1px] rounded-md pl-3 focus:outline-none focus:border-[#F08080] focus:border-2 placeholder:text-[#f2a0a0]`}
+								/>
+								<ErrorMessage
+									className='text-red-600 text-xs'
+									name='fullName'
+									component='span'
+								/>
+							</div>
+							<div className='flex flex-col'>
+								<Field
+									id='phone'
+									name='phone'
+									placeholder='Введіть номер телефону'
+									className={`bg-white text-red-700 h-10 border-[#F08080] border-[1px] rounded-md pl-3 focus:outline-none focus:border-[#F08080] focus:border-2 placeholder:text-[#f2a0a0]`}
+								/>
+								<ErrorMessage
+									className='text-red-600 text-xs'
+									name='phone'
+									component='span'
+								/>
+							</div>
+
+							<button
+								type='submit'
+								className='bg-[#F08080] !border-none duration-200 !outline-none rounded-md h-10 px-4 text-lg cursor-pointer text-white hover:bg-[#c96363]'>
+								Надіслати
+							</button>
+						</Form>
+					)}
+				</Formik>
 			</div>
 		</div>
 	);
