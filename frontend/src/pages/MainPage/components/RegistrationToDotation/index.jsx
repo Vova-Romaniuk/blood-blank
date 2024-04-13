@@ -18,6 +18,7 @@ function RegistrationToDonation() {
 	const createRegistrationDonation = async (values) => {
 		try {
 			await apiClient.post("registration-donation", values);
+			setIsRegistered(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -32,7 +33,6 @@ function RegistrationToDonation() {
 				day: new Date(item.day),
 			}));
 			setSortedDates(newData);
-			setIsRegistered(true);
 		} catch (error) {
 			console.log(error);
 		}
