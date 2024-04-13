@@ -1,5 +1,13 @@
 // consultations.controller.ts
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { ConsultationsService } from './consultations.service';
 import { Consultation } from './consultation.model';
 
@@ -22,5 +30,10 @@ export class ConsultationsController {
   @Delete(':id')
   async deleteConsultation(@Param('id') id: string): Promise<boolean> {
     return this.consultationsService.deleteConsultation(id);
+  }
+
+  @Put()
+  async toggleHandledStatus(@Body() id): Promise<Consultation> {
+    return this.consultationsService.toggleHandledStatus(id);
   }
 }

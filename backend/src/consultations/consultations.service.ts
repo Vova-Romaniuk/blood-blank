@@ -41,4 +41,23 @@ export class ConsultationsService {
       throw new Error('Error deleting consultation');
     }
   }
+  async toggleHandledStatus(id): Promise<Consultation> {
+    try {
+      // Витягаємо рядкове значення із переданого ідентифікатора
+      const consultationId = id instanceof Object ? id.id : id;
+
+      const consultation = await this.consultationModel
+        .findById(consultationId)
+        .exec();
+      if (!consultation) {
+        throw new NotFoundException('Consultation not found');
+      }
+
+      consultation.isHandled = !consultation.isHandled;
+      return consultation.save();
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error toggling handled status');
+    }
+  }
 }

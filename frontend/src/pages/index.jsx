@@ -1,5 +1,6 @@
 import MainPage from "./MainPage";
 import Layout from "./components/Layout";
+import AdminPanel from "./AdminPanel";
 
 export const routes = [
 	{
@@ -11,5 +12,9 @@ export const routes = [
 				element: <MainPage />,
 			},
 		],
+	},
+	{
+		path: "/admin",
+		element: <AdminPanel />,
 	},
 ];

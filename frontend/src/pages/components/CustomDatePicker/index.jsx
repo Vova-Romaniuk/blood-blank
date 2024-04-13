@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { uk } from "date-fns/locale/uk";
@@ -14,7 +14,7 @@ const CustomDatePicker = ({
 	value = null,
 }) => {
 	const datePickerProps = {
-		dateFormat: isTimeIntervals ? "d MMMM, yyyy h:mm" : "d MMMM, yyyy",
+		dateFormat: isTimeIntervals ? "d MMMM, yyyy hh:mm" : "d MMMM, yyyy",
 		placeholderText: placeholderText,
 	};
 	const { setFieldValue } = useFormikContext();
@@ -41,6 +41,9 @@ const CustomDatePicker = ({
 
 		return !times.includes(formattedTime);
 	};
+	useEffect(() => {
+		console.log(disabledDaysAndTimes);
+	}, []);
 	const setDate = (value) => {
 		setFieldValue(name, value);
 	};
@@ -50,12 +53,11 @@ const CustomDatePicker = ({
 			locale='uk'
 			placeholderText={placeholderText}
 			onChange={setDate}
-			className={`bg-white w-full text-red-700 h-10 border-[#F08080] border-[1px] rounded-md pl-3 focus:outline-none focus:border-[#F08080] focus:border-2 placeholder:text-[#f2a0a0] ${className}`}
+			className={`bg-white w-full text-red-700 h-10 border-[#F08080] border-[1px] md:text-base md:placeholder:text-base rounded-md pl-3 focus:outline-none focus:border-[#F08080] focus:border-2 placeholder:text-[#f2a0a0] ${className}`}
 			showTimeSelect
 			filterTime={filterTime}
 			minDate={new Date("1950-01-01")}
 			maxDate={new Date("2100-12-31")}
-			// showYearPicker
 			showYearDropdown
 			yearDropdownItemNumber={150}
 			scrollableYearDropdown

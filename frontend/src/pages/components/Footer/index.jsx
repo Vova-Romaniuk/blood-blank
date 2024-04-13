@@ -1,7 +1,7 @@
 function Footer() {
 	return (
 		<footer className='w-full h-[70px] flex justify-evenly items-center text-white bg-[#964e4e]'>
-			<div className='flex w-7/12 justify-between '>
+			<div className='flex w-7/12 md:w-6/12 justify-between md:justify-evenly'>
 				<span className='[&>svg]:h-5 [&>svg]:w-5 cursor-pointer hover:scale-150 text-xl duration-200'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
@@ -27,7 +27,7 @@ function Footer() {
 					</svg>
 				</span>
 			</div>
-			<span className='underline font-medium'>
+			<span className='underline font-medium md:w-6/12 md:text-xs md:mr-2'>
 				© Усі права захищені 2024
 			</span>
 		</footer>

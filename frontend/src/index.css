@@ -27,3 +27,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .leaflet-tile-container {
 	height: 100%;
 }
+.grid-registration {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.grid-consultation {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
