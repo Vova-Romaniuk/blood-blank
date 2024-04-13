@@ -19,11 +19,17 @@ const CustomDatePicker = ({
 	};
 	const { setFieldValue } = useFormikContext();
 	if (isTimeIntervals) {
+		const minTime = new Date();
+		minTime.setHours(8, 0); // Встановлення мінімального часу на 8:00
+		const maxTime = new Date();
+		maxTime.setHours(20, 0); // Встановлення максимального часу на 20:00
+
 		datePickerProps.showTimeSelect = true;
 		datePickerProps.timeIntervals = 30;
 		datePickerProps.timeFormat = "HH:mm";
+		datePickerProps.minTime = minTime;
+		datePickerProps.maxTime = maxTime;
 	}
-
 	const filterTime = (time) => {
 		const day = value;
 		if (!day) return true;
